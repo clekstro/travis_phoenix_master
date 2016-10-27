@@ -1,0 +1,15 @@
+language: elixir
+elixir: 1.3.4
+otp_release:
+- 19.1
+sudo: false
+cache:
+  directories:
+  - _build
+  - deps
+before_script:
+- mix local.rebar --force
+- mix deps.get --only test
+- MIX_ENV=test mix ecto.reset
+script:
+- mix test
